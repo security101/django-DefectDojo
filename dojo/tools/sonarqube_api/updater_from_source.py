@@ -68,7 +68,7 @@ class SonarQubeApiUpdaterFromSource(object):
             finding.false_p = False
             finding.mitigated = None
             finding.is_mitigated = False
-            ra_helper.remove_finding.from_any_risk_acceptance(finding)
+            ra_helper.remove_finding_from_risk_acceptance(finding)
 
         elif sonarqube_status == 'CONFIRMED':
             finding.active = True
@@ -76,7 +76,7 @@ class SonarQubeApiUpdaterFromSource(object):
             finding.false_p = False
             finding.mitigated = None
             finding.is_mitigated = False
-            ra_helper.remove_finding.from_any_risk_acceptance(finding)
+            ra_helper.remove_finding_from_risk_acceptance(finding)
 
         elif sonarqube_status == 'FIXED':
             finding.active = False
@@ -84,7 +84,7 @@ class SonarQubeApiUpdaterFromSource(object):
             finding.false_p = False
             finding.mitigated = timezone.now()
             finding.is_mitigated = True
-            ra_helper.remove_finding.from_any_risk_acceptance(finding)
+            ra_helper.remove_finding_from_risk_acceptance(finding)
 
         elif sonarqube_status == 'WONTFIX':
             finding.active = False
@@ -102,6 +102,6 @@ class SonarQubeApiUpdaterFromSource(object):
             finding.false_p = True
             finding.mitigated = None
             finding.is_mitigated = False
-            ra_helper.remove_finding.from_any_risk_acceptance(finding)
+            ra_helper.remove_finding_from_risk_acceptance(finding)
 
         finding.save(issue_updater_option=False, dedupe_option=False)
